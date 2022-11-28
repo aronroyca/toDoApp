@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/aronroyca/toDoApp#readme",
   "dependencies": {
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "serve-static": "^1.15.0"
   }
 }
