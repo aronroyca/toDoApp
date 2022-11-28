@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/aronroyca/toDoApp/issues"
   },
-  "homepage": "https://github.com/aronroyca/toDoApp#readme"
+  "homepage": "https://github.com/aronroyca/toDoApp#readme",
+  "dependencies": {
+    "nodemon": "^2.0.20"
+  }
 }

@@ -1,8 +1,19 @@
-let http = require("http");
+var http = require("http");
+var fs = require("fs");
+var path = require("path");
 
 http
   .createServer(function (req, res) {
-    console.log("Its up and running");
-    res.end("Hello World!");
+    fs.readFile(
+      "./public/index.html",
+      { encoding: "utf-8" },
+      function (err, data) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.end(data);
+        }
+      }
+    );
   })
   .listen(3000);
