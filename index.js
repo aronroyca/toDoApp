@@ -32,7 +32,7 @@ app.post('/home', (req, res) => {
 app.delete('/home', (req, res) => {
   console.log('post /home', req.body.text);
   todos = todos.split(',').filter(x => x !== req.body.text).join(',')
-  fs.writeFileSync('./todos.txt', `, ${req.body.text}`, (err) => {
+  fs.writeFileSync('./todos.txt', todos, (err) => {
     if (err) console.log(err)
   })
   res.json(todos);
