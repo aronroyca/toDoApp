@@ -12,7 +12,7 @@ let todos = fs.readFileSync('./todos.txt', 'utf-8', (err, data) => {
 });
 
 
-// app.use(express.static('./public'));
+app.use(express.static('./public'));
 
 app.get('/home', (req, res) => {
   console.log('get /home');
@@ -20,7 +20,7 @@ app.get('/home', (req, res) => {
 });
 
 app.post('/home', (req, res) => {
-  console.log('post /home', req.body.text);
+  console.log('post /home', req.body.addItem);
   fs.appendFileSync('./todos.txt', `, ${req.body.text}`, 'utf-8');
   todos = fs.readFileSync('./todos.txt', 'utf-8', (err, data) => {
   if (err) console.log(err)
@@ -39,3 +39,4 @@ app.delete('/home', (req, res) => {
 });
 
 app.listen(3000)
+console.log('listening on port 3000')
