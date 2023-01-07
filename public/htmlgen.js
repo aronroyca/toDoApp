@@ -34,6 +34,16 @@ addForm.addEventListener('submit', function (event) {
         },
         body: JSON.stringify(addTodo)
     })
+        .then(res => res.json())
+        
+        .then(res => {
+            todosList.innerHTML = '';
+    res.split(',').forEach(x => {
+        todosList.innerHTML +=
+            `<li>${x}</li?><button>x</button>`
+
+    })})
+        .then(res => console.log(res))
     .catch((error) => {
         console.error('Error:', error);
     });
