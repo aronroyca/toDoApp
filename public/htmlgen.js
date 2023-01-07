@@ -25,14 +25,14 @@ addForm.addEventListener('submit', function (event) {
     event.preventDefault();
     const formData = document.getElementById('addTodoForm')
     const addFormData = new FormData(addForm);
-    // const addTodo = [...addFormData.values()]
+    const addTodo = [...addFormData.values()]
 
     fetch('/home', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(addFormData)
+        body: JSON.stringify(addTodo)
     })
     .catch((error) => {
         console.error('Error:', error);
