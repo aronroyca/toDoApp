@@ -1,4 +1,4 @@
-// console.log(todos);
+//GET ROUTE
 let todosList = document.getElementById('todos');
 
 window.addEventListener('load', () => {
@@ -8,9 +8,9 @@ window.addEventListener('load', () => {
         method: 'GET'
     })
         .then(res => res.json())
-        .then(res => res.split(',').forEach(x => {
+        .then(res => res.split(',').forEach( (x, i) => {
             todosList.innerHTML += 
-                `<li>${x}</li?`
+                `<li id="liRender${i}" >${x}</li?><button id="deleteButton${i}" >x</button>`
             
         }))
     .catch((error) => {
@@ -21,6 +21,8 @@ window.addEventListener('load', () => {
 const addForm = document.getElementById('addTodoForm')
 // console.log(addButton);
 
+
+//POST ROUTE
 addForm.addEventListener('submit', function (event) {
     event.preventDefault();
     const formData = document.getElementById('addTodoForm')
@@ -40,7 +42,7 @@ addForm.addEventListener('submit', function (event) {
             todosList.innerHTML = '';
     res.split(',').forEach(x => {
         todosList.innerHTML +=
-            `<li>${x}</li?><button>x</button>`
+            `<li id="liRender${i}" >${x}</li?><button id="deleteButton${i}" >x</button>`
 
     })})
         .then(res => console.log(res))
@@ -50,3 +52,8 @@ addForm.addEventListener('submit', function (event) {
 
     console.log('success');
 });
+
+// DELETE ROUTE
+function deleteButtonsSet() {
+    document.querySelectorAll('.')    
+}
