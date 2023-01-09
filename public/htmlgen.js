@@ -8,16 +8,17 @@ window.addEventListener('load', () => {
         method: 'GET'
     })
         .then(res => res.json())
-        .then(res => res.split(',').forEach( (x, i) => {
-            todosList.innerHTML += 
-                `<li id="liRender${i}" >${x}</li?><button id="deleteButton${i}" >x</button>`
+        .then(res => res.split(',').forEach((x, i) => {
+            todosList.innerHTML +=
+                `<li id="liRender${i}" >${x}</li?><button id="deleteButton${i}" class="deleteButton" >x</button>`
             
         }))
-    .catch((error) => {
-        console.error('Error:', error);
-    })
+        .then(() => deleteButtonsSet())
+        .catch((error) => {
+            console.error('Error:', error);
+        })
 
-})
+});
 const addForm = document.getElementById('addTodoForm')
 // console.log(addButton);
 
@@ -40,11 +41,13 @@ addForm.addEventListener('submit', function (event) {
         
         .then(res => {
             todosList.innerHTML = '';
-    res.split(',').forEach(x => {
+    res.split(',').forEach((x, i) => {
         todosList.innerHTML +=
-            `<li id="liRender${i}" >${x}</li?><button id="deleteButton${i}" >x</button>`
+            `<li id="liRender${i}" >${x}</li?><button id="deleteButton${i}" class="deleteButton" >x</button>`
 
-    })})
+    })
+        })
+        .then(() => deleteButtonsSet())
         .then(res => console.log(res))
     .catch((error) => {
         console.error('Error:', error);
@@ -55,5 +58,10 @@ addForm.addEventListener('submit', function (event) {
 
 // DELETE ROUTE
 function deleteButtonsSet() {
-    document.querySelectorAll('.')    
+    let deleteButtons = document.querySelectorAll(".deleteButton");
+    console.log(deleteButtons);
+    deleteButtons.forEach((x, i) => x.addEventListener('click', function() {
+        console.log(deleteButtons[i])
+    }))
 }
+
