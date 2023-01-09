@@ -61,7 +61,16 @@ function deleteButtonsSet() {
     let deleteButtons = document.querySelectorAll(".deleteButton");
     console.log(deleteButtons);
     deleteButtons.forEach((x, i) => x.addEventListener('click', function() {
-        console.log(deleteButtons[i])
+        console.log(deleteButtons[i].id);
+
+        fetch('/home', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            },
+        body : i
+        })
+        // .then(res)
     }))
 }
 
