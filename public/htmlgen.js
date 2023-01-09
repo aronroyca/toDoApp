@@ -60,17 +60,16 @@ addForm.addEventListener('submit', function (event) {
 function deleteButtonsSet() {
     let deleteButtons = document.querySelectorAll(".deleteButton");
     console.log(deleteButtons);
-    deleteButtons.forEach((x, i) => x.addEventListener('click', function() {
-        console.log(deleteButtons[i].id);
+    deleteButtons.forEach((x, i) => x.addEventListener('click', function () {
+        let buttonNumber = x.id.split('')[x.id.split('').length - 1]
+        console.log(buttonNumber);
 
-        fetch('/home', {
+        fetch(`/home?${buttonNumber}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
-            },
-        body : i
+        }
         })
-        // .then(res)
     }))
 }
 

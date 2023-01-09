@@ -29,8 +29,9 @@ app.post('/home', (req, res) => {
   res.json(todos);
   });
 
-app.delete('/home', (req, res) => {
-  console.log('post /home', req.body.text);
+app.delete(`/home:buttonNumber`, (req, res) => {
+  let buttonNumber = req.url;
+  console.log('post /home', buttonNumber);
   todos = todos.split(',').filter(x => x !== req.body.text).join(',')
   fs.writeFileSync('./todos.txt', todos, (err) => {
     if (err) console.log(err)
