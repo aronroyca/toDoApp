@@ -64,7 +64,7 @@ function deleteButtonsSet() {
         let buttonNumber = x.id.split('')[x.id.split('').length - 1]
         console.log(buttonNumber);
 
-        fetch(`/home?${buttonNumber}`, {
+        fetch(`/home/${buttonNumber}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',

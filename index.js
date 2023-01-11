@@ -29,13 +29,15 @@ app.post('/home', (req, res) => {
   res.json(todos);
   });
 
-app.delete(`/home:buttonNumber`, (req, res) => {
-  let buttonNumber = req.url;
-  console.log('post /home', buttonNumber);
-  todos = todos.split(',').filter(x => x !== req.body.text).join(',')
-  fs.writeFileSync('./todos.txt', todos, (err) => {
-    if (err) console.log(err)
-  })
+app.delete(`/home/:taskNumber`, (req, res) => {
+  console.log('delete /home', req.params.taskNumber);
+  newTodos = todos.split(',').filter((x, i) => i !== req.params.taskNumber)
+    //.join(',');
+  // !== req.params.taskNumber
+  console.log(newTodos);
+  // fs.writeFileSync('./todos.txt', todos, (err) => {
+  //   if (err) console.log(err)
+  // })
   res.json(todos);
 });
 
