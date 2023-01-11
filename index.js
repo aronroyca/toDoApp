@@ -31,13 +31,22 @@ app.post('/home', (req, res) => {
 
 app.delete(`/home/:taskNumber`, (req, res) => {
   console.log('delete /home', req.params.taskNumber);
-  newTodos = todos.split(',').filter((x, i) => i !== req.params.taskNumber)
-    //.join(',');
-  // !== req.params.taskNumber
-  console.log(newTodos);
-  // fs.writeFileSync('./todos.txt', todos, (err) => {
-  //   if (err) console.log(err)
-  // })
+  let oldTodos = todos.split(',');
+  newTodos = [];
+  console.log(oldTodos, newTodos)
+  for (let i = 0; i < oldTodos.length; i++){
+    if (oldTodos[i] !== oldTodos[req.params.taskNumber]) {
+      newTodos.push(oldTodos[i]);
+    }
+  }
+  console.log(newTodos.join(','));
+  fs.writeFileSync('./todos.txt', newTodos.join(','), (err) => {
+    if (err) console.log(err)
+  })
+  todos = fs.readFileSync('./todos.txt', 'utf-8', (err, data) => {
+  if (err) console.log(err)
+  console.log(data);
+});
   res.json(todos);
 });
 

@@ -70,6 +70,16 @@ function deleteButtonsSet() {
             'Content-Type': 'application/json',
         }
         })
+        .then(res => res.json())
+        
+        .then(res => {
+            todosList.innerHTML = '';
+    res.split(',').forEach((x, i) => {
+        todosList.innerHTML +=
+            `<li id="liRender${i}" >${x}</li?><button id="deleteButton${i}" class="deleteButton" >x</button>`
+
+    })
+        })
     }))
 }
 
