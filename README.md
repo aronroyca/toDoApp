@@ -1,3 +1,5 @@
+This is my full stack to do app utilizing node.js, express, mongodb, and react.
+
 // the todo model definition
 todo: {
 id: number;
