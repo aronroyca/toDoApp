@@ -1,85 +1,82 @@
 //GET ROUTE
-let todosList = document.getElementById('todos');
+let todosList = document.getElementById("todos");
 
-window.addEventListener('load', () => {
-    console.log('loaded, get request sent');
+window.addEventListener("load", () => {
+  console.log("loaded, get request sent");
 
-    fetch('/home', {
-        method: 'GET'
-    })
-        .then(res => res.json())
-        .then(res => res.split(',').forEach((x, i) => {
-            todosList.innerHTML +=
-                `<li id="liRender${i}" >${x}</li?><button id="deleteButton${i}" class="deleteButton" >x</button>`
-            
-        }))
-        .then(() => deleteButtonsSet())
-        .catch((error) => {
-            console.error('Error:', error);
-        })
-
+  fetch("/home", {
+    method: "GET",
+  })
+    .then((res) => res.json())
+    .then((res) =>
+      res.split(",").forEach((x, i) => {
+        todosList.innerHTML += `<li id="liRender${i}" >${x}</li?><button id="deleteButton${i}" class="deleteButton" >x</button>`;
+      })
+    )
+    // .then(() => deleteButtonsSet())
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 });
-const addForm = document.getElementById('addTodoForm')
+// const addForm = document.getElementById("addTodoForm");
 // console.log(addButton);
 
+// //POST ROUTE
+// addForm.addEventListener('submit', function (event) {
+//     event.preventDefault();
+//     const formData = document.getElementById('addTodoForm')
+//     const addFormData = new FormData(addForm);
+//     const addTodo = [...addFormData.values()]
 
-//POST ROUTE
-addForm.addEventListener('submit', function (event) {
-    event.preventDefault();
-    const formData = document.getElementById('addTodoForm')
-    const addFormData = new FormData(addForm);
-    const addTodo = [...addFormData.values()]
+//     fetch('/home', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify(addTodo)
+//     })
+//         .then(res => res.json())
 
-    fetch('/home', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(addTodo)
-    })
-        .then(res => res.json())
-        
-        .then(res => {
-            todosList.innerHTML = '';
-    res.split(',').forEach((x, i) => {
-        todosList.innerHTML +=
-            `<li id="liRender${i}" >${x}</li?><button id="deleteButton${i}" class="deleteButton" >x</button>`
+//         .then(res => {
+//             todosList.innerHTML = '';
+//     res.split(',').forEach((x, i) => {
+//         todosList.innerHTML +=
+//             `<li id="liRender${i}" >${x}</li?><button id="deleteButton${i}" class="deleteButton" >x</button>`
 
-    })
-        })
-        .then(() => deleteButtonsSet())
-        .then(res => console.log(res))
-    .catch((error) => {
-        console.error('Error:', error);
-    });
+//     })
+//         })
+//         .then(() => deleteButtonsSet())
+//         .then(res => console.log(res))
+//     .catch((error) => {
+//         console.error('Error:', error);
+//     });
 
-    console.log('success');
-});
+//     console.log('success');
+// });
 
-// DELETE ROUTE
-function deleteButtonsSet() {
-    let deleteButtons = document.querySelectorAll(".deleteButton");
-    console.log(deleteButtons);
-    deleteButtons.forEach((x, i) => x.addEventListener('click', function () {
-        let buttonNumber = x.id.split('')[x.id.split('').length - 1]
-        console.log(buttonNumber);
+// // DELETE ROUTE
+// function deleteButtonsSet() {
+//     let deleteButtons = document.querySelectorAll(".deleteButton");
+//     console.log(deleteButtons);
+//     deleteButtons.forEach((x, i) => x.addEventListener('click', function () {
+//         let buttonNumber = x.id.split('')[x.id.split('').length - 1]
+//         console.log(buttonNumber);
 
-        fetch(`/home/${buttonNumber}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-        })
-        .then(res => res.json())
-        
-        .then(res => {
-            todosList.innerHTML = '';
-    res.split(',').forEach((x, i) => {
-        todosList.innerHTML +=
-            `<li id="liRender${i}" >${x}</li?><button id="deleteButton${i}" class="deleteButton" >x</button>`
+//         fetch(`/home/${buttonNumber}`, {
+//         method: 'DELETE',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         }
+//         })
+//         .then(res => res.json())
 
-    })
-        })
-    }))
-}
+//         .then(res => {
+//             todosList.innerHTML = '';
+//     res.split(',').forEach((x, i) => {
+//         todosList.innerHTML +=
+//             `<li id="liRender${i}" >${x}</li?><button id="deleteButton${i}" class="deleteButton" >x</button>`
 
+//     })
+//         })
+//     }))
+// }

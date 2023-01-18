@@ -1,5 +1,14 @@
 This is my full stack to do app utilizing node.js, express, mongodb, and react.
 
+docker run -d -p 27017:27017 --name todoMongo mongo:5.0
+docker exec -it todoMongo mongo
+
+db.todos.insertMany( [
+... { task: 'call home' },
+... { task: 'make dinner' },
+... { task: 'clean house' }
+... ] )
+
 // the todo model definition
 todo: {
 id: number;
